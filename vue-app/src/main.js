@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import actions from './shared/actions'
 import App from './App.vue'
 import router from './router'
 import store from './store'
@@ -7,7 +8,10 @@ Vue.config.productionTip = false
 
 
 let instance = null
-function render() {
+function render(props) {
+
+  actions.setActions(props.actions);
+
   instance = new Vue({
     router,
     store,
@@ -21,11 +25,11 @@ if (window.__POWERED_BY_QIANKUN__) {
   render()
 }
 
-export async function bootstrap() { }
-export async function mount() {
-  render()
+export async function bootstrap(props) { }
+export async function mount(props) {
+  render(props)
 }
-export async function unmount() {
+export async function unmount(props) {
   instance.$destroy()
   instance = null
 }

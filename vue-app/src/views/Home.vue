@@ -1,21 +1,28 @@
 <template>
   <div class="home">
-    <button v-on:click="counter += 1">Add 1</button>
-    <p>The button above has been clicked {{ counter }} times.</p>
+    <button v-on:click="handleClick">改变座右铭</button>
   </div>
 </template>
 
 <script>
+import actions from "@/shared/actions";
+
 export default {
   name: "home",
   data() {
     return {
-      counter: 0,
+      name: "",
+      motto: "",
     };
+  },
+  mounted() {
+    actions.onGlobalStateChange((state, prev) => {
+      console.log(111111111, state, prev);
+    }, true);
   },
   methods: {
     handleClick() {
-      this.count++;
+      actions.setGlobalState({ name: "chao", motto: "just do it" });
     },
   },
 };

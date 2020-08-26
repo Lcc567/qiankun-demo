@@ -29,7 +29,10 @@
 
 <script>
 import vTags from "./components/Tags.vue";
+import { loadMicroApp } from "qiankun";
 import { find } from "lodash";
+import apps from "./micro/app";
+
 export default {
   data() {
     return {
@@ -56,10 +59,29 @@ export default {
       activeMenu: "/",
     };
   },
+  // watch: {
+  //   $route: {
+  //     immediate: true,
+  //     handler(to, from) {
+  //       console.log("-------21", to, from);
+
+  //       //  TODOS 保存打开的tag,刷新的时候，根据路由进行跳转，加载对应的应用
+  //       const prefix = to.path.slice(1);
+  //       loadMicroApp({
+  //         name: prefix + "App",
+  //         entry: "//localhost:8000",
+  //         container: "#vue",
+  //         activeRule: "/vue",
+  //       });
+
+  //       this.handleSelect(to.path);
+  //     },
+  //   },
+  // },
   methods: {
-    handleSelect(index, indexPath) {
+    handleSelect(index) {
       const selectMenu = find(this.menus, ["key", index]);
-      console.log("menu", selectMenu);
+      console.log("menu2", selectMenu);
       if (!find(this.tags, ["key", index])) {
         this.tags.push(selectMenu);
 

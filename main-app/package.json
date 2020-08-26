@@ -7,9 +7,14 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "axios": "^0.20.0",
+    "body-parser": "^1.19.0",
     "core-js": "^2.6.5",
     "element-ui": "^2.13.2",
+    "express": "^4.17.1",
+    "jwt-simple": "^0.5.6",
     "lodash": "^4.17.20",
+    "lowdb": "^1.0.0",
     "qiankun": "^2.0.21",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3",
