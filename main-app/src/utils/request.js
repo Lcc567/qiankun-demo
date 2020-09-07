@@ -19,7 +19,7 @@ class Api {
         const config = {
             ...options,
             baseURL: this.baseURL,
-            timeout: 1000,
+            timeout: 3000,
         }
         this.interceptors(instance, options.url)
         instance(config)
