@@ -1,6 +1,9 @@
 import { initGlobalState } from "qiankun";
-import initState from './state'
+import initState from './state';
+import store from '../store'
+import { mapState } from "vuex";
 
-const actions = initGlobalState(initState);
+console.log('store111',store.state.user, mapState(['user']));
+const actions = initGlobalState(store.state.user);
 
 export default actions;

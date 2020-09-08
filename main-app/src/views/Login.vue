@@ -14,7 +14,10 @@
   </el-col>
 </template>
 <script>
-import request from "@/utils/request";
+import { createNamespacedHelpers } from "vuex";
+import { LOGIN } from "../store/actions-type";
+
+const { mapActions } = createNamespacedHelpers("login");
 export default {
   name: "login",
   data() {
@@ -36,16 +39,12 @@ export default {
     };
   },
   methods: {
+    ...mapActions([LOGIN]),
     onSubmit(formName) {
-      this.$refs[formName].validate((valid) => {
-        console.log("valid", valid);
+      this.$refs[formName].validate(async (valid) => {
         if (valid) {
-          console.log("submit!", this.loginForm);
-          request({
-            url: "/login",
-            method: "post",
-            data: this.loginForm,
-          });
+          await this[LOGIN](this.loginForm);
+          this.$router.push("/");
         } else {
           console.log("error submit!!");
           return false;

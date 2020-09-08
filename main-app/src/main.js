@@ -5,7 +5,7 @@ import { registerMicroApps, start } from "qiankun";
 import actions from './shared/actions'
 import App from './App.vue'
 import router from './router'
-import store from './store'
+import store from './store/index'
 
 Vue.config.productionTip = false
 Vue.use(ElementUI);
@@ -19,7 +19,6 @@ const apps = [
     container: '#vue',
     activeRule: '/vue',
     props: {
-      // user: initUser,
       actions
     }
   },

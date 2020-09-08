@@ -1,21 +1,22 @@
 <template>
   <div class="home">
     系统首页
-    姓名：{{name}}
-    座右铭{{motto}}
+    姓名：{{user.username}}
+    电话{{user.phone}}
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import actions from "@/shared/actions";
+import { mapState } from "vuex";
 export default {
   name: "home",
   data() {
-    return {
-      name: "",
-      motto: "",
-    };
+    return {};
+  },
+  computed: {
+    ...mapState(["user"]),
   },
   mounted() {
     console.log("actionsactions", actions);

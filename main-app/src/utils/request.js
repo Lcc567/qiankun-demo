@@ -2,7 +2,8 @@ import axios from 'axios';
 
 class Api {
     constructor() {
-        this.baseURL = 'http://127.0.0.1:7001'
+        this.baseURL = 'http://127.0.0.1:7001';
+        this.timeout = 3000;
     }
 
     interceptors(instance, url) {
@@ -19,10 +20,10 @@ class Api {
         const config = {
             ...options,
             baseURL: this.baseURL,
-            timeout: 3000,
+            timeout: this.timeout,
         }
         this.interceptors(instance, options.url)
-        instance(config)
+        return instance(config)
     }
 }
 const { request } = new Api();
