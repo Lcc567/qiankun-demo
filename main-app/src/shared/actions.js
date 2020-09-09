@@ -4,6 +4,6 @@ import store from '../store'
 import { mapState } from "vuex";
 
 console.log('store111',store.state.user, mapState(['user']));
-const actions = initGlobalState(store.state.user);
+const actions = initGlobalState(initState);
 
 export default actions;

@@ -10,7 +10,7 @@ export default new Vuex.Store({
   },
   state: {
     user: {
-      username: 'lee'
+      // username: 'lee'
     }
   },
   mutations: {

@@ -10,6 +10,7 @@
 // @ is an alias to /src
 import actions from "@/shared/actions";
 import { mapState } from "vuex";
+import store from '../store/index'
 export default {
   name: "home",
   data() {
@@ -19,11 +20,15 @@ export default {
     ...mapState(["user"]),
   },
   mounted() {
-    console.log("actionsactions", actions);
+    let user = localStorage.getItem('user')
+    console.log("actionsactions", actions, this.user, user);
+    if (user) {
+      store.commit('setUser', JSON.parse(user))
+    }
     actions.onGlobalStateChange((state, pre) => {
-      console.log("2222", state, pre);
-      this.name = state.name;
-      this.motto = state.motto;
+      // console.log("2222", state, pre);
+      // this.name = state.name;
+      // this.motto = state.motto;
     }, true);
   },
   components: {},
