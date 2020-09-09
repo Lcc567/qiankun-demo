@@ -10,7 +10,7 @@
 // @ is an alias to /src
 import actions from "@/shared/actions";
 import { mapState } from "vuex";
-import store from '../store/index'
+import store from '../store/index';
 export default {
   name: "home",
   data() {

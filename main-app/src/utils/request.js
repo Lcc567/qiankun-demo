@@ -16,11 +16,13 @@ class Api {
     }
 
     request = (options) => {
-        const instance = axios.create()
+        const instance = axios.create();
+        const token = localStorage.getItem('token');
         const config = {
             ...options,
             baseURL: this.baseURL,
             timeout: this.timeout,
+            Authorization: token
         }
         this.interceptors(instance, options.url)
         return instance(config)

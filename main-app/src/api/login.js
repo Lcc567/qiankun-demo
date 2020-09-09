@@ -7,3 +7,11 @@ export const login = (data) => {
         data
     });
 }
+
+export const verify = () => {
+    return request({
+        url: "/verify",
+        method: "get",
+    });
+}
+
