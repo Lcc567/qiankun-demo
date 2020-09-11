@@ -1,6 +1,21 @@
 <template>
   <el-container>
-    <el-header>qiankun</el-header>
+    <el-header style="text-align: right; font-size: 12px">
+      <el-dropdown trigger="click">
+        <i class="el-icon-setting" style="margin-right: 15px">
+          <span style="margin-left: 15px">{{user.username|| '登录'}}</span>
+        </i>
+
+        <el-dropdown-menu slot="dropdown" class="dropdown-wrap">
+          <ul class="user-info">
+            <li>用户</li>
+            <li>{{user.username}}</li>
+            <li>用户角色</li>
+            <li>{{user.role}}</li>
+          </ul>
+        </el-dropdown-menu>
+      </el-dropdown>
+    </el-header>
     <el-container>
       <el-aside width="200px">
         <el-menu
@@ -17,7 +32,9 @@
       <el-main>
         <v-tags v-model="tags" @changeActiveMenu="changeActiveMenu"></v-tags>
         <div class="content">
-          <router-view />
+          <keep-alive>
+            <router-view />
+          </keep-alive>
           <div id="vue"></div>
           <div id="react"></div>
         </div>
@@ -32,6 +49,7 @@ import vTags from "./components/Tags.vue";
 import { loadMicroApp } from "qiankun";
 import { find } from "lodash";
 import apps from "./micro/app";
+import { mapState } from "vuex";
 
 export default {
   data() {
@@ -59,25 +77,9 @@ export default {
       activeMenu: "/",
     };
   },
-  // watch: {
-  //   $route: {
-  //     immediate: true,
-  //     handler(to, from) {
-  //       console.log("-------21", to, from);
-
-  //       //  TODOS 保存打开的tag,刷新的时候，根据路由进行跳转，加载对应的应用
-  //       const prefix = to.path.slice(1);
-  //       loadMicroApp({
-  //         name: prefix + "App",
-  //         entry: "//localhost:8000",
-  //         container: "#vue",
-  //         activeRule: "/vue",
-  //       });
-
-  //       this.handleSelect(to.path);
-  //     },
-  //   },
-  // },
+  computed: {
+    ...mapState(["user"]),
+  },
   methods: {
     handleSelect(index) {
       const selectMenu = find(this.menus, ["key", index]);
@@ -130,5 +132,21 @@ export default {
 
 .content {
   padding: 5px 10px;
+}
+
+.dropdown-wrap {
+  /* width: 300px; */
+}
+
+.user-info {
+  display: grid;
+  width: 150px;
+  padding: 10px;
+  font-size: 12px;
+  grid-template-columns: 50% 50%;
+}
+
+.user-info li {
+  line-height: 25px;
 }
 </style>

@@ -1,4 +1,6 @@
 import axios from 'axios';
+import router from '../router';
+import { MessageBox } from 'element-ui'
 
 class Api {
     constructor() {
@@ -13,7 +15,15 @@ class Api {
         instance.interceptors.response.use(function (response) {
             // TODOS 401弹窗跳转登录
             if (response.data.code === 401) {
-                console.log('token失效')
+                MessageBox.confirm('token已失效', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    router.push('/login')
+                }).catch(() => {
+                });
+
             }
             return response.data
         });

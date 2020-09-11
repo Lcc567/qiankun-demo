@@ -1,6 +1,7 @@
 <template>
   <div class="home">
-    <button v-on:click="handleClick">改变座右铭</button>
+    {{name}}
+    <button v-on:click="handleClick">改变座右铭2222</button>
   </div>
 </template>
 
@@ -22,7 +23,8 @@ export default {
   },
   methods: {
     handleClick() {
-      actions.setGlobalState({ name: "chao", motto: "just do it" });
+      this.name = 'lll'
+      // actions.setGlobalState({ name: "chao", motto: "just do it" });
     },
   },
 };
